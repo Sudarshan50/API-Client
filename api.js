@@ -2,16 +2,20 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
+import env from "dotenv";
+
 
 const app = express();
 const port = 3000;
 
+env.config();
+
 const db = new pg.Client({
-  user:"postgres.sxgowafvqlcqnelxxsxz",
-  password:"Sudarshan@50",
-  database:"postgres",
-  host:"aws-0-ap-south-1.pooler.supabase.com",
-  port:5432,
+  user:process.env.PG_USER,
+  password:process.env.PG_PASSWORD,
+  database:process.env.PG_DATABASE,
+  host:process.env.PG_HOST,
+  port:process.env.PG_PORT,
 })
 
 const saltround = 3;
